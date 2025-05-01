@@ -6,4 +6,10 @@ package parser;
 
 public class RssParser extends GeneralParser {
 
+	@Override
+	public Object parse(String input) {
+		// Implementar
+		System.out.println("Parseo RSS feed: " + input);
+		return null;
+	}
 }

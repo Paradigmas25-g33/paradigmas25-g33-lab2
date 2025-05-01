@@ -10,43 +10,56 @@ public class SingleSubscription {
 	private String url;
 	private List<String> ulrParams;
 	private String urlType;
+	private String download;
 	
 	
-	public SingleSubscription(String url, List<String> ulrParams, String urlType) {
+	public SingleSubscription(String url, List<String> ulrParams, String urlType, String download) {
 		super();
 		this.url = url;
-		this.ulrParams = new ArrayList<String>() ;
+		this.ulrParams = new ArrayList<>();
 		this.urlType = urlType;
+		this.download = download;
 	}
 
 	public String getUrl() {
 		return url;
 	}
+
 	public void setUrl(String url) {
 		this.url = url;
 	}
+
 	public List<String> getUlrParams() {
 		return ulrParams;
 	}
+
 	public String getUlrParams(int i) {
 		return this.ulrParams.get(i);
 	}
+	
 	public void setUlrParams(String urlParam) {
 		this.ulrParams.add(urlParam);
 	}
+
 	public int getUlrParamsSize() {
 		return ulrParams.size();
 	}
+
 	public String getUrlType() {
 		return urlType;
 	}
+
 	public void setUrlType(String urlType) {
 		this.urlType = urlType;
 	} 
+
+	public String getDownload() {
+        return download;
+    }
 	
 	@Override
 	public String toString() {
-		return "{url=" + getUrl() + ", ulrParams=" + getUlrParams().toString() + ", urlType=" + getUrlType() + "}";
+		return "{url=" + url + ", ulrParams=" + ulrParams + ", urlType=" + urlType + ", download=" + download + "}";
 	}
 	
 	public void prettyPrint(){
@@ -60,7 +73,7 @@ public class SingleSubscription {
 	
 	public static void main(String[] args) {
 		System.out.println("SingleSubscriptionClass");
-		SingleSubscription s = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss");
+		SingleSubscription s = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss", "true");
 		s.setUlrParams("Business");
 		s.setUlrParams("Technology");
 		System.out.println(s.getFeedToRequest(0));

@@ -8,4 +8,10 @@ package parser;
 
 public class RedditParser extends GeneralParser {
 
+    @Override
+	public Object parse(String input) {
+		// Implementar
+		System.out.println("Parseo Reddit feed: " + input);
+		return null;
+	}
 }
