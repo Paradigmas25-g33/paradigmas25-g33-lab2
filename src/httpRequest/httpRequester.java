@@ -1,9 +1,10 @@
 package httpRequest;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.net.URL;
 
 
 /* Esta clase se encarga de realizar efectivamente el pedido de feed al servidor de noticias
@@ -14,33 +15,54 @@ import java.net.http.HttpResponse;
 public class httpRequester {
 	
 	public String getFeedRss(String urlFeed){
-		//String feedRssXml = null;
-		try {
-			HttpClient client = HttpClient.newHttpClient();
+		String feedRssXml = null;
+		HttpURLConnection con = null;
 
-			HttpRequest request = HttpRequest.newBuilder()
-						.uri(URI.create(urlFeed))
-						.GET()
-						.build();
-			
-						HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-						
-						if (response.statusCode() == 200) {
-							return response.body(); // XML del feed
-						} else {
-							System.err.println("Error: código de estado HTTP " + response.statusCode());
-							return null;
-						}
+		try {
+			URI uri = new URI(urlFeed);
+			URL url = uri.toURL();
+			con = (HttpURLConnection) url.openConnection();
+			con.setRequestMethod("GET");
+			int status = con.getResponseCode();
+			if (status == 200) {
+				BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+				String inputLine;
+				StringBuffer content = new StringBuffer();
+				while ((inputLine = in.readLine()) != null) {
+					content.append(inputLine);
+				}
+				in.close();
+				feedRssXml = content.toString(); // XML del feed
+			} else {
+				System.err.println("Error: código de estado HTTP " + status);
+			}
+		} catch (Exception e) {
+			System.err.println("Error creating URL or opening connection: " + e.getMessage());
+		} finally {
+			if (con != null) {
+				con.disconnect();
+			}
 		}
-		catch (Exception exc){
-			System.err.println("Excepción al obtener el feed RSS: " + exc.getMessage());
-			return null;
-		}
+
+		return feedRssXml;
 	}
 
 	public String getFeedReedit(String urlFeed) {
 		String feedReeditJson = null;
 		return feedReeditJson;
 	}
+	
+	public static void main(String[] args) {
+        httpRequester requester = new httpRequester();
+        String urlFeed = "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml"; // URL de prueba
+        String feedContent = requester.getFeedRss(urlFeed);
+
+        if (feedContent != null) {
+            System.out.println("Feed RSS obtenido:");
+            System.out.println(feedContent);
+        } else {
+            System.err.println("No se pudo obtener el feed RSS.");
+        }
+    }
 
 }
