@@ -24,9 +24,8 @@ public class SubscriptionParser extends GeneralParser {
                 String url = jsonObject.getString("url");
                 JSONArray paramsArray = jsonObject.getJSONArray("urlParams");
                 String urlType = jsonObject.getString("urlType");
-                String download = jsonObject.getString("download");
 
-                SingleSubscription singleSubscription = new SingleSubscription(url, null, urlType, download);
+                SingleSubscription singleSubscription = new SingleSubscription(url, null, urlType);
                 for (int j = 0; j < paramsArray.length(); j++) {
                     singleSubscription.setUlrParams(paramsArray.getString(j));
                 }

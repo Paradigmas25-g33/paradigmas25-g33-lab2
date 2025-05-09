@@ -45,10 +45,10 @@ public class Subscription {
 	public static void main(String[] args) {
 		Subscription a = new Subscription(null);
 	
-		SingleSubscription s0 = new SingleSubscription("https://www.chicagotribune.com/arcio/rss/category/%s/?query=display_date:[now-2d+TO+now]&sort=display_date:desc", null, "rss", "true");
+		SingleSubscription s0 = new SingleSubscription("https://www.chicagotribune.com/arcio/rss/category/%s/?query=display_date:[now-2d+TO+now]&sort=display_date:desc", null, "rss");
 		s0.setUlrParams("business");		
 		
-		SingleSubscription s1 = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss", "/home/fbustos/Documents/");
+		SingleSubscription s1 = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss");
 		s1.setUlrParams("Business");
 		s1.setUlrParams("Technology");
 

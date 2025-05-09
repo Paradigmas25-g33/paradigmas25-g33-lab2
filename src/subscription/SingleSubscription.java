@@ -10,15 +10,13 @@ public class SingleSubscription {
 	private String url;
 	private List<String> ulrParams;
 	private String urlType;
-	private String download;
 	
 	
-	public SingleSubscription(String url, List<String> ulrParams, String urlType, String download) {
+	public SingleSubscription(String url, List<String> ulrParams, String urlType) {
 		super();
 		this.url = url;
 		this.ulrParams = new ArrayList<>();
 		this.urlType = urlType;
-		this.download = download;
 	}
 
 	public String getUrl() {
@@ -52,14 +50,10 @@ public class SingleSubscription {
 	public void setUrlType(String urlType) {
 		this.urlType = urlType;
 	} 
-
-	public String getDownload() {
-        return download;
-    }
 	
 	@Override
 	public String toString() {
-		return "{url=" + url + ", ulrParams=" + ulrParams + ", urlType=" + urlType + ", download=" + download + "}";
+		return "{url=" + url + ", ulrParams=" + ulrParams + ", urlType=" + urlType + "}";
 	}
 	
 	public void prettyPrint(){
@@ -73,7 +67,7 @@ public class SingleSubscription {
 	
 	public static void main(String[] args) {
 		System.out.println("SingleSubscriptionClass");
-		SingleSubscription s = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss", "true");
+		SingleSubscription s = new SingleSubscription("https://rss.nytimes.com/services/xml/rss/nyt/%s.xml", null, "rss");
 		s.setUlrParams("Business");
 		s.setUlrParams("Technology");
 		System.out.println(s.getFeedToRequest(0));
