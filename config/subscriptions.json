@@ -1,6 +1,6 @@
 [
     {
-        "url": "https://rss.nytimes.com/services/xml/rss/nyt/%s.xml",
+        "url": "https://rss.nytimes.com/services/xml/rss/nyt/Business.xml",
         "urlParams": ["Business", "Technology"],
         "urlType": "rss"
     },
