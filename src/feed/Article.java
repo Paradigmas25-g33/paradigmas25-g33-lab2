@@ -15,7 +15,7 @@ public class Article {
 	private Date publicationDate;
 	private String link;
 	
-	private List<NamedEntity> namedEntityList = new ArrayList<NamedEntity>();
+	public List<NamedEntity> namedEntityList = new ArrayList<NamedEntity>();
 	
 	
 	public Article(String title, String text, Date publicationDate, String link) {
