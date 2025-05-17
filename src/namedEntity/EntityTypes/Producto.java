@@ -1,0 +1,35 @@
+package namedEntity.EntityTypes;
+import namedEntity.NamedEntity;
+
+public class Producto extends NamedEntity {
+    String comercial;
+    String productor;
+
+    public Producto(String category, int frequency, String name, String comercial, String productor) {
+        super(category, frequency, name);
+        this.comercial = comercial;
+        this.productor = productor;
+    }
+
+    public String getComercial() {
+        return comercial;
+    }
+
+    public void setComercial(String comercial) {
+        this.comercial = comercial;
+    }
+
+    public String getProductor() {
+        return productor;
+    }
+
+    public void setProductor(String productor) {
+        this.productor = productor;
+    }
+
+    @Override
+    public String toString() {
+        return "Producto [comercial=" + comercial + ", productor=" + productor + ", category=" + category
+                + ", frequency=" + frequency + "]";
+    }  
+}

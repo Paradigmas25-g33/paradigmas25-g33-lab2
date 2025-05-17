@@ -1,30 +1,54 @@
 package namedEntity.EntityTypes;
 import namedEntity.NamedEntity;
-import java.util.List;
-
-// :v skip-file:
 
 public class Persona extends NamedEntity {
-    private final int id;
-    private final String lastname;
-    private final String title;
+    int id;
+    String firstname;
+    String lastname;
+    String title;
 
-    public Persona(String name, String category, int frequency, int id, String lastname, String title) {
-        super(name, category, frequency);
+    public Persona(String category, int frequency, String name, int id, String firstname, String lastname, String title) {
+        super(category, frequency, name);
         this.id = id;
+        this.firstname = firstname;
         this.lastname = lastname;
         this.title = title;
     }
 
     public int getId() {
-        return this.id;
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLastname() {
-        return this.lastname;
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    @Override
+    public String toString() {
+        return "Persona [id=" + id + ", category=" + category + ", frequency=" + frequency + "]";
     }
 }

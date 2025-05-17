@@ -8,7 +8,7 @@ public class NamedEntity {
 	protected String category; 
 	protected int frequency;
 	
-	public NamedEntity(String name, String category, int frequency) {
+	public NamedEntity(String category, int frequency, String name) {
 		super();
 		this.name = name;
 		this.category = category;
@@ -16,7 +16,7 @@ public class NamedEntity {
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -24,15 +24,15 @@ public class NamedEntity {
 	}
 
 	public String getCategory() {
-		return name;
+		return this.category;
 	}
 
-	public void setCategory(String name) {
-		this.name = name;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getFrequency() {
-		return frequency;
+		return this.frequency;
 	}
 
 	public void setFrequency(int frequency) {
@@ -45,10 +45,10 @@ public class NamedEntity {
 
 	@Override
 	public String toString() {
-		return "ObjectNamedEntity [name=" + name + ", frequency=" + frequency + "]";
+		return "NamedEntity [name=" + name + ", category=" + category + ", frequency=" + frequency + "]";
 	}
 	public void prettyPrint(){
-		System.out.println(this.getName() + " " + this.getFrequency());
+		System.out.println(this.getCategory() + " " + this.getFrequency());
 	}
 	
 	
