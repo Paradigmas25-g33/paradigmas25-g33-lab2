@@ -1,13 +1,14 @@
 package namedEntity.EntityTypes;
 import namedEntity.NamedEntity;
+import topic.Topic;
 
 public class Lugar extends NamedEntity{
     String country;
     String city;
     String address;
 
-    public Lugar(String category, int frequency, String name, String country, String city, String address) {
-        super(category, frequency, name);
+    public Lugar(String category, int frequency, String name, Topic topic, String country, String city, String address) {
+        super(category, frequency, name, topic);
         this.country = country;
         this.city = city;
         this.address = address;

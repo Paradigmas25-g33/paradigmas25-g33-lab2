@@ -1,5 +1,6 @@
 package namedEntity.EntityTypes;
 import namedEntity.NamedEntity;
+import topic.Topic;
 
 public class Persona extends NamedEntity {
     int id;
@@ -7,8 +8,8 @@ public class Persona extends NamedEntity {
     String lastname;
     String title;
 
-    public Persona(String category, int frequency, String name, int id, String firstname, String lastname, String title) {
-        super(category, frequency, name);
+    public Persona(String category, int frequency, String name, Topic topic, int id, String firstname, String lastname, String title) {
+        super(category, frequency, name, topic);
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;

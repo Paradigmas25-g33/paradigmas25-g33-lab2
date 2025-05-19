@@ -1,13 +1,14 @@
 package namedEntity.EntityTypes;
 import namedEntity.NamedEntity;
+import topic.Topic;
 
 public class Organizacion extends NamedEntity {
     String nombre;
     int cant_miembros;
     String tipo;
 
-    public Organizacion(String category, int frequency, String name, String nombre, int cant_miembros, String tipo) {
-        super(category, frequency, name);
+    public Organizacion(String category, int frequency, String name, Topic topic, String nombre, int cant_miembros, String tipo) {
+        super(category, frequency, name, topic);
         this.nombre = nombre;
         this.cant_miembros = cant_miembros;
         this.tipo = tipo;

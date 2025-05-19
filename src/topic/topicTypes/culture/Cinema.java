@@ -2,24 +2,13 @@ package topic.topicTypes.culture;
 
 public class Cinema extends Culture {
 
-    private String genre;
-
-    public Cinema(String category, int frequency, String name, String genre) {
-        super(category, frequency, name);
-        this.genre = genre;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public Cinema(String name, String category, int frequency) {
+        super(name, "Cinema", frequency);
     }
 
     @Override
     public String toString() {
-        return "Cinema [genre=" + genre + ", name=" + name + ", category=" + category + ", frequency=" + frequency + "]";
+        return "Cinema [name=" + this.getName() + ", category=" + this.getCategory() + ", frequency=" + this.getFrequency() + "]";
     }
-    
+
 }

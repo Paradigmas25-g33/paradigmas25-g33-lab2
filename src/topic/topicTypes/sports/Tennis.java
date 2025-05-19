@@ -1,22 +1,13 @@
 package topic.topicTypes.sports;
 
 public class Tennis extends Sports {
-    private int numberOfSets;
 
-    public Tennis(String category, int frequency, String name, int numberOfSets) {
-        super(category, frequency, name);
-        this.numberOfSets = numberOfSets;
+    public Tennis(String name, String category, int frequency) {
+        super(name, category, frequency);
     }
 
-    public int getNumberOfSets() {
-        return numberOfSets;
+    @Override
+    public String toString() {
+        return "Tennis{" + "name='" + getName() + '\'' +", category='" + getCategory() + '\'' + ", frequency=" + getFrequency() + '}';
     }
-
-    public void setNumberOfSets(int numberOfSets) {
-        this.numberOfSets = numberOfSets;
-    }
-
-    public void play() {
-        System.out.println("Playing a tennis match with " + numberOfSets + " sets.");
-    }
-}
+}   

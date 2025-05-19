@@ -1,5 +1,6 @@
 package namedEntity.EntityTypes;
 import namedEntity.NamedEntity;
+import topic.Topic;
 import java.sql.Date;
 
 public class Evento extends NamedEntity {
@@ -7,8 +8,8 @@ public class Evento extends NamedEntity {
     Date fecha;
     String recurrente;
 
-    public Evento(String category, int frequency, String name, String forma_canonica, Date fecha, String recurrente) {
-        super(category, frequency, name);
+    public Evento(String category, int frequency, String name, Topic topic, String forma_canonica, Date fecha, String recurrente) {
+        super(category, frequency, name, topic);
         this.forma_canonica = forma_canonica;
         this.fecha = fecha;
         this.recurrente = recurrente;

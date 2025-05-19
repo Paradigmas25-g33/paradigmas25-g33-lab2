@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import namedEntity.NamedEntity;
+import namedEntity.EntityTypes.*;
 import namedEntity.heuristic.Heuristic;
 
 /*Esta clase modela el contenido de un articulo (ie, un item en el caso del rss feed) */
@@ -75,25 +76,54 @@ public class Article {
 		return null;
 	}
 	
-	public void computeNamedEntities(Heuristic h){
-		String text = this.getTitle() + " " +  this.getText();  
-			
-		String charsToRemove = ".,;:()'!?\n";
-		for (char c : charsToRemove.toCharArray()) {
-			text = text.replace(String.valueOf(c), "");
-		}
-			
-		for (String s: text.split(" ")) {
-			if (h.isEntity(s)){
-				NamedEntity ne = this.getNamedEntity(s);
-				if (ne == null) {
-					this.namedEntityList.add(new NamedEntity(s, 1,null));
-				}else {
-					ne.incFrequency();
-				}
-			}
-		} 
-	}
+
+	public void computeNamedEntities(Heuristic h) {
+        String text = this.getTitle() + " " + this.getText();
+
+        String charsToRemove = ".,;:()'!?\n";
+        for (char c : charsToRemove.toCharArray()) {
+            text = text.replace(String.valueOf(c), "");
+        }
+
+
+        for (String s : text.split(" ")) {
+            if (h.isEntity(s)) {
+                NamedEntity ne = this.getNamedEntity(s);
+                if (ne == null) {
+                    String category = h.getCategory(s);
+                    // Si no hay clasificacion definida para esta named entity, su tipo sera
+                    // generico.
+                    if(category == null) {
+                        category = "Other";
+                    } else {
+                        if (category.equals("Persona")) {
+                            Persona entity = new Persona(category, 0, s, null, (Integer) null, null, null, null);
+                        }
+						else if (category.equals("Organizacion")) {
+							Organizacion entity = new Organizacion(category ,0, s,null, null, (Integer) null, null);
+						}
+						else if (category.equals("Evento")) {
+							Evento entity = new Evento(category, 0, s, null, null, null, null);
+						}
+						else if (category.equals("Producto")) {
+							Producto entity = new Producto(category, 0, s, null, null, null);
+						}
+						else if (category.equals("Fecha")) {
+							Fecha entity = new Fecha(category, 0, s, null, null);
+						}
+						else if (category.equals("Lugar")) {
+							Lugar entity = new Lugar(category, 0, s, null, null, null, null);
+						}
+                    }
+
+                    entity.setFrequency(1);
+                    this.namedEntityList.add(entity);
+                } else {
+                    ne.incFrequency();
+                }
+            }
+        }
+    }
 
 	
 	public void prettyPrint() {

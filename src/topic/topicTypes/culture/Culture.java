@@ -1,31 +1,40 @@
 package topic.topicTypes.culture;
 
-public class Culture extends topic.Topic {
-    
-    public Culture(String category, int frequency, String name) {
-        super(category, frequency, name);
+public class Culture implements topic.Topic {
+    private String name;
+    private String category;
+    private int frequency;
+
+    public Culture(String name, String category, int frequency) {
+        this.name = name;
+        this.category = category;
+        this.frequency = frequency;
+    }
+    // obtener nombre
+	public String getName() {
+        return this.name;
     }
 
-    public String getCategory() {
-        return category;
+    public void setName(String name) {
+        this.name = name;
     }
     public void setCategory(String category) {
         this.category = category;
     }
-    public int getFrequency() {
-        return frequency;
+	// obtener categoria
+	public String getCategory() {
+        return this.category;
     }
+    
     public void setFrequency(int frequency) {
         this.frequency = frequency;
     }
-    public String getName() {
-        return name;
+
+    public int getFrequency() {
+        return this.frequency;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
-    @Override
-    public String toString() {
+
+	public String toString() {
         return "Culture [name=" + name + ", category=" + category + ", frequency=" + frequency + "]";
     }
 }

@@ -1,8 +1,14 @@
 package topic.topicTypes.politics;
 
-public class Politics extends topic.Topic {
+public class Politics implements topic.Topic {
+    private String category;
+    private int frequency;
+    private String name;
+
     public Politics(String category, int frequency, String name) {
-        super(category, frequency, name);
+        this.category = category;
+        this.frequency = frequency;
+        this.name = name;
     }
 
     public String getCategory() {

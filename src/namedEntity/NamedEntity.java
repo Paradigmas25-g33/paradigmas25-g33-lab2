@@ -1,18 +1,29 @@
 package namedEntity;
 
+import topic.Topic;
 
 /*Esta clase modela la nocion de entidad nombrada*/
 
 public class NamedEntity {
 	protected String name;
-	protected String category; 
 	protected int frequency;
+	protected String category;
+	protected Topic topic;
 	
-	public NamedEntity(String category, int frequency, String name) {
+	public NamedEntity(String category, int frequency, String name, Topic topic) {
 		super();
 		this.name = name;
 		this.category = category;
 		this.frequency = frequency;
+		this.topic =  topic;
+	}
+
+	public Topic getTopic() {
+		return this.topic;
+	}
+
+	public void setTopic(Topic topic) {
+		this.topic = topic;
 	}
 
 	public String getName() {
