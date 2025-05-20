@@ -49,9 +49,17 @@ public class Feed {
 	}
 	
 
-	public void prettyPrint(){
-		for (Article a: this.getArticleList()){
-			a.prettyPrint();
+	public void prettyPrint(int opcion){
+		if (opcion ==1){
+			for (Article a: this.getArticleList()){
+				a.prettyPrint();
+			}
+		} else if (opcion == 0){
+			for (Article a: this.getArticleList()){
+				a.prettyPrintH();
+			}
+		} else {
+			System.out.println("Opcion no valida");
 		}
 		
 	}
@@ -80,7 +88,7 @@ public class Feed {
 		  f.addArticle(a2);
 		  f.addArticle(a3);
 
-		  f.prettyPrint();
+		  f.prettyPrint(1);
 		  
 	}
 	

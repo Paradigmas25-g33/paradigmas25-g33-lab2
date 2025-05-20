@@ -96,28 +96,37 @@ public class Article {
                     if(category == null) {
                         category = "Other";
                     } else {
-                        if (category.equals("Persona")) {
-                            Persona entity = new Persona(category, 0, s, null, (Integer) null, null, null, null);
-                        }
-						else if (category.equals("Organizacion")) {
-							Organizacion entity = new Organizacion(category ,0, s,null, null, (Integer) null, null);
+                        if (category.equals("Person")) {
+                            Persona entity = new Persona(category, 0, s, null, 0, null, null, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
 						}
-						else if (category.equals("Evento")) {
+						else if (category.equals("Company")) {
+							Organizacion entity = new Organizacion(category ,0, s,null, null, 0, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
+						}
+						else if (category.equals("Event")) {
 							Evento entity = new Evento(category, 0, s, null, null, null, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
 						}
-						else if (category.equals("Producto")) {
+						else if (category.equals("Product")) {
 							Producto entity = new Producto(category, 0, s, null, null, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
 						}
-						else if (category.equals("Fecha")) {
+						else if (category.equals("Date")) {
 							Fecha entity = new Fecha(category, 0, s, null, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
 						}
-						else if (category.equals("Lugar")) {
+						else if (category.equals("Place")) {
 							Lugar entity = new Lugar(category, 0, s, null, null, null, null);
+							entity.setFrequency(1);
+                    		this.namedEntityList.add(entity);
 						}
                     }
-
-                    entity.setFrequency(1);
-                    this.namedEntityList.add(entity);
                 } else {
                     ne.incFrequency();
                 }
@@ -132,18 +141,43 @@ public class Article {
 		System.out.println("Publication Date: " + this.getPublicationDate());
 		System.out.println("Link: " + this.getLink());
 		System.out.println("Text: " + this.getText());
+		System.out.println("**********************************************************************************************");	
+	}
+
+	public void prettyPrintH() {
 		System.out.println("**********************************************************************************************");
-		
+		System.out.println("Title: " + this.getTitle());
+		System.out.println("Publication Date: " + this.getPublicationDate());
+		System.out.println("Link: " + this.getLink());
+		System.out.println("Text: " + this.getText());
+		System.out.println("Entidades nombradas encontradas:");
+        for (namedEntity.NamedEntity ne : this.namedEntityList) {
+            System.out.println(ne);
+        }
+		System.out.println("**********************************************************************************************");	
 	}
 	
+	
 	public static void main(String[] args) {
-		  Article a = new Article("This Historically Black University Created Its Own Tech Intern Pipeline",
-			  "A new program at Bowie State connects computing students directly with companies, bypassing an often harsh Silicon Valley vetting process",
-			  new Date(),
-			  "https://www.nytimes.com/2023/04/05/technology/bowie-hbcu-tech-intern-pipeline.html"
-			  );
-		 
-		  a.prettyPrint();
+		  Article a = new Article(
+            "Elon Musk y Apple lanzan un nuevo producto en USA",
+            "El evento de Apple fue presentado por Elon Musk en California el 20 de mayo de 2025.",
+            new Date(),
+            "https://www.nytimes.com/2023/04/05/technology/apple-musk-event.html"
+        );
+
+        // Instanciar una heurística (puedes cambiar por RandomHeuristic si querés)
+        namedEntity.heuristic.Heuristic heuristic = new namedEntity.heuristic.QuickHeuristic();
+
+        // Computar entidades nombradas
+        a.computeNamedEntities(heuristic);
+
+        // Imprimir artículo y entidades nombradas encontradas
+        a.prettyPrint();
+        System.out.println("Entidades nombradas encontradas:");
+        for (namedEntity.NamedEntity ne : a.namedEntityList) {
+            System.out.println(ne);
+        }
 	}
 	
 	

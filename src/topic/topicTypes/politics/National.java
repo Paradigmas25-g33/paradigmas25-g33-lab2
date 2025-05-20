@@ -1,7 +1,6 @@
 package topic.topicTypes.politics;
 
 public class National extends Politics {
-    private String country;
 
     public National(String category, int frequency, String name) {
         super(category, frequency, name);

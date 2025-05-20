@@ -3,6 +3,7 @@ import parser.SubscriptionParser;
 import subscription.Subscription;
 import feed.Feed;
 import httpRequest.httpRequester;
+import namedEntity.heuristic.QuickHeuristic;
 import subscription.SingleSubscription;
 
 public class FeedReaderMain {
@@ -45,10 +46,46 @@ public class FeedReaderMain {
 				}
 			}
 			
-			resultRss.prettyPrint();
+			resultRss.prettyPrint(1);
 			
 		} else if (args.length == 1 && args[0].equals("-ne")){
-			System.out.println("-ne");
+			
+			SubscriptionParser parser = new SubscriptionParser();
+			Subscription subscription = parser.parse(System.getProperty("user.dir") + "/../config/subscriptions.json");
+			
+			QuickHeuristic heuristic = new QuickHeuristic();
+
+			httpRequester requester = new httpRequester();
+			Feed resultRss = new Feed("RSS Feed");
+			//String feedUrlReddit = null;
+			//String feedContentReddit = null;
+			
+			for (SingleSubscription singleSubscription : subscription.getSubscriptionsList()) {
+				String UrlType = singleSubscription.getUrlType();
+				
+				if ("rss".equals(UrlType.toLowerCase())) {
+					
+					String feedUrlRss = null;
+					String feedContentRss = null;
+					RssParser rssParser = new RssParser();
+					feedUrlRss = singleSubscription.getUrl();
+					feedContentRss = requester.getFeedRss(feedUrlRss); // FeedContentRss == NULL
+					resultRss = (Feed) rssParser.parse(feedContentRss);
+
+					
+				} else if ("reddit".equals(UrlType.toLowerCase())){
+					System.out.println("Funciòn no implementada");
+					//String feedUrl = singleSubscription.getUrl();
+					//String feedContent = requester.getFeedRss(feedUrl);
+				} else {
+					System.err.println("Url no encontrada");
+				}
+			}
+			for (int i = 0; i < resultRss.getNumberOfArticles(); i++) {
+				resultRss.getArticle(i).computeNamedEntities(heuristic);
+			}
+			resultRss.prettyPrint(0);
+			
 			/*
 			Leer el archivo de suscription por defecto;
 			Llamar al httpRequester para obtenr el feed del servidor
