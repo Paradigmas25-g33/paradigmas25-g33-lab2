@@ -88,17 +88,14 @@ public class FeedReaderMain {
 
 			for (int i = 0; i < resultRss.getNumberOfArticles(); i++) {
 				resultRss.getArticle(i).computeNamedEntities(heuristic);
-				System.out.println("lololo");
 				for (namedEntity.NamedEntity ne : resultRss.getArticle(i).namedEntityList) {
 					String key = ne.getCategory() + "|" + ne.getName();
 					globalCount.put(key, globalCount.getOrDefault(key, 0) + ne.getFrequency());
 					entityCategory.put(key, ne.getCategory());
 					totalEntities++;
 					totalFrequency += ne.getFrequency();
-					System.out.println("lalala");
 				}
 			}
-			System.out.println("lilili");
 			resultRss.prettyPrint(0);
 			
 			/*

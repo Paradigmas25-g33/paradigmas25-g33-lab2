@@ -80,9 +80,9 @@ public class Article {
 	public void computeNamedEntities(Heuristic h) {
         String text = this.getTitle() + " " + this.getText();
 
-        String charsToRemove = ".,;:()'!?\n";
+        String charsToRemove = ".,;:()'’!?\n";
         for (char c : charsToRemove.toCharArray()) {
-            text = text.replace(String.valueOf(c), "");
+            text = text.replace(String.valueOf(c), " ");
         }
 
 
@@ -91,6 +91,8 @@ public class Article {
                 NamedEntity ne = this.getNamedEntity(s);
                 if (ne == null) {
                     String category = h.getCategory(s);
+					System.out.println("Entity: " + s);
+					System.out.println("Category: " + category);
                     // Si no hay clasificacion definida para esta named entity, su tipo sera
                     // generico.
                     if(category == null) {
