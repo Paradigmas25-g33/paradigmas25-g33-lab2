@@ -50,7 +50,7 @@ public class Feed {
 	
 
 	public void prettyPrint(int opcion){
-		if (opcion ==1){
+		if (opcion == 1){
 			for (Article a: this.getArticleList()){
 				a.prettyPrint();
 			}
@@ -88,7 +88,7 @@ public class Feed {
 		  f.addArticle(a2);
 		  f.addArticle(a3);
 
-		  f.prettyPrint(1);
+		  //f.prettyPrint(1);
 		  
 	}
 	

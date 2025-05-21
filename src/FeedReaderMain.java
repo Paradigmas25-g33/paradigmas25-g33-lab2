@@ -14,6 +14,10 @@ public class FeedReaderMain {
 	
 	public static void main(String[] args) {
 		System.out.println("************* FeedReader version 1.0 *************");
+		java.util.Map<String, Integer> globalCount = new java.util.HashMap<>();
+		java.util.Map<String, String> entityCategory = new java.util.HashMap<>();
+		int totalEntities = 0;
+		int totalFrequency = 0;
 		if (args.length == 0) {
 
 			SubscriptionParser parser = new SubscriptionParser();
@@ -48,7 +52,7 @@ public class FeedReaderMain {
 			
 			resultRss.prettyPrint(1);
 			
-		} else if (args.length == 1 && args[0].equals("-ne")){
+		} else if (args.length == 1 && args[0].equals("-ne")) {
 			
 			SubscriptionParser parser = new SubscriptionParser();
 			Subscription subscription = parser.parse(System.getProperty("user.dir") + "/../config/subscriptions.json");
@@ -81,9 +85,20 @@ public class FeedReaderMain {
 					System.err.println("Url no encontrada");
 				}
 			}
+
 			for (int i = 0; i < resultRss.getNumberOfArticles(); i++) {
 				resultRss.getArticle(i).computeNamedEntities(heuristic);
+				System.out.println("lololo");
+				for (namedEntity.NamedEntity ne : resultRss.getArticle(i).namedEntityList) {
+					String key = ne.getCategory() + "|" + ne.getName();
+					globalCount.put(key, globalCount.getOrDefault(key, 0) + ne.getFrequency());
+					entityCategory.put(key, ne.getCategory());
+					totalEntities++;
+					totalFrequency += ne.getFrequency();
+					System.out.println("lalala");
+				}
 			}
+			System.out.println("lilili");
 			resultRss.prettyPrint(0);
 			
 			/*
