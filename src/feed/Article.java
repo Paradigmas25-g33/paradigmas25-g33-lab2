@@ -78,63 +78,63 @@ public class Article {
 	
 
 	public void computeNamedEntities(Heuristic h) {
-        String text = this.getTitle() + " " + this.getText();
+		// limpiar texto
+		String text = (getTitle() + " " + getText())
+			.replaceAll("[\\.,;:()'’!?\\n]", " ");
+	
+		// itero cada palabra del articulo
+		for (String s : text.split("\\s+")) {
+			if (!h.isEntity(s)) continue;
+	
+			// si ya existe, incremento y sigo
+			NamedEntity existing = getNamedEntity(s);
+			if (existing != null) {
+				existing.incFrequency();
+				continue;
+			}
 
-        String charsToRemove = ".,;:()'’!?\n";
-        for (char c : charsToRemove.toCharArray()) {
-            text = text.replace(String.valueOf(c), " ");
-        }
+			// obtengo la categoria
+			String category = h.getCategory(s);
+			NamedEntity entity;
 
+			if (category.equals("Other")) {
+				// intento encontrar un entity con name="Other"
+				NamedEntity other = getNamedEntity("Other");
+				if (other != null) {
+					other.incFrequency();
+					continue;
+				}
+				// si no existe, creo la única instancia:
+				entity = new NamedEntity("Other", 1, "Other", null) {
+					@Override
+					public String getCategory() { return "Other"; }
+				};
+			
+			} else if (category.equals("Person")) {
+				entity = new Persona("Person", 1, s, null, 0, s, s, "");
 
-        for (String s : text.split(" ")) {
-            if (h.isEntity(s)) {
-                NamedEntity ne = this.getNamedEntity(s);
-                if (ne == null) {
-                    String category = h.getCategory(s);
-					System.out.println("Entity: " + s);
-					System.out.println("Category: " + category);
-                    // Si no hay clasificacion definida para esta named entity, su tipo sera
-                    // generico.
-                    if(category == null) {
-                        category = "Other";
-                    } else {
-                        if (category.equals("Person")) {
-                            Persona entity = new Persona(category, 0, s, null, 0, null, null, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-						else if (category.equals("Company")) {
-							Organizacion entity = new Organizacion(category ,0, s,null, null, 0, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-						else if (category.equals("Event")) {
-							Evento entity = new Evento(category, 0, s, null, null, null, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-						else if (category.equals("Product")) {
-							Producto entity = new Producto(category, 0, s, null, null, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-						else if (category.equals("Date")) {
-							Fecha entity = new Fecha(category, 0, s, null, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-						else if (category.equals("Place") || category.equals("Country") || category.equals("City")) {
-							Lugar entity = new Lugar(category, 0, s, null, null, null, null);
-							entity.setFrequency(1);
-                    		this.namedEntityList.add(entity);
-						}
-                    }
-                } else {
-                    ne.incFrequency();
-                }
-            }
-        }
-    }
+			} else if (category.equals("Company")) {
+				entity = new Organizacion("Company", 1, s, null, "", 0, "");
+
+			} else if (category.equals("Product")) {
+				entity = new Producto("Product", 1, s, null, "", "");
+
+			} else if (category.equals("Event")) {
+				entity = new Evento("Event", 1, s, null, "", null, null);
+
+			} else if (category.equals("Date")) {
+				entity = new Fecha("Date", 1, s, null, null);
+
+			} else {
+				entity = new Lugar("Place", 1, s, null, "", null, null);
+
+			} 
+
+			// agrego a la lista
+			namedEntityList.add(entity);
+		}
+	}
+	
 
 	
 	public void prettyPrint() {

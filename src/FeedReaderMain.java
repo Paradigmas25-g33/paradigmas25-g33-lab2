@@ -37,7 +37,7 @@ public class FeedReaderMain {
 					String feedContentRss = null;
 					RssParser rssParser = new RssParser();
 					feedUrlRss = singleSubscription.getUrl();
-					feedContentRss = requester.getFeedRss(feedUrlRss); // FeedContentRss == NULL
+					feedContentRss = requester.getFeedRss(feedUrlRss); 
 					resultRss = (Feed) rssParser.parse(feedContentRss);
 
 					

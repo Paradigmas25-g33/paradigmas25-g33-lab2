@@ -98,7 +98,7 @@ public class RssParser extends GeneralParser {
 
         if (result != null) {
             System.out.println("Parseo exitoso. Elementos extraídos:");
-            //result.prettyPrint(1); // muestra los elementos de manera legible
+            result.prettyPrint(1); // muestra los elementos de manera legible
         } else {
             System.err.println("Error al parsear el archivo RSS");
         }

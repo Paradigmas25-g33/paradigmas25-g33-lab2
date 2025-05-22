@@ -50,14 +50,18 @@ public class Feed {
 	
 
 	public void prettyPrint(int opcion){
+		// feed completo sin entidades
 		if (opcion == 1){
 			for (Article a: this.getArticleList()){
 				a.prettyPrint();
 			}
+
+		// feed completo con entidades
 		} else if (opcion == 0){
 			for (Article a: this.getArticleList()){
 				a.prettyPrintH();
 			}
+			
 		} else {
 			System.out.println("Opcion no valida");
 		}
