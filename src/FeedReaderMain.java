@@ -14,12 +14,8 @@ public class FeedReaderMain {
 	
 	public static void main(String[] args) {
 		System.out.println("************* FeedReader version 1.0 *************");
-		java.util.Map<String, Integer> globalCount = new java.util.HashMap<>();
-		java.util.Map<String, String> entityCategory = new java.util.HashMap<>();
-		int totalEntities = 0;
-		int totalFrequency = 0;
 		if (args.length == 0) {
-
+			
 			SubscriptionParser parser = new SubscriptionParser();
 			Subscription subscription = parser.parse(System.getProperty("user.dir") + "/../config/subscriptions.json");
 			
@@ -58,7 +54,7 @@ public class FeedReaderMain {
 			Subscription subscription = parser.parse(System.getProperty("user.dir") + "/../config/subscriptions.json");
 			
 			QuickHeuristic heuristic = new QuickHeuristic();
-
+			
 			httpRequester requester = new httpRequester();
 			Feed resultRss = new Feed("RSS Feed");
 			//String feedUrlReddit = null;
@@ -75,7 +71,7 @@ public class FeedReaderMain {
 					feedUrlRss = singleSubscription.getUrl();
 					feedContentRss = requester.getFeedRss(feedUrlRss); // FeedContentRss == NULL
 					resultRss = (Feed) rssParser.parse(feedContentRss);
-
+					
 					
 				} else if ("reddit".equals(UrlType.toLowerCase())){
 					System.out.println("Funciòn reddit no implementada");
@@ -86,6 +82,10 @@ public class FeedReaderMain {
 				}
 			}
 
+			java.util.Map<String, Integer> globalCount = new java.util.HashMap<>();
+			java.util.Map<String, String> entityCategory = new java.util.HashMap<>();
+			int totalEntities = 0;
+			int totalFrequency = 0;
 			for (int i = 0; i < resultRss.getNumberOfArticles(); i++) {
 				resultRss.getArticle(i).computeNamedEntities(heuristic);
 				for (namedEntity.NamedEntity ne : resultRss.getArticle(i).namedEntityList) {
@@ -94,20 +94,24 @@ public class FeedReaderMain {
 					entityCategory.put(key, ne.getCategory());
 					totalEntities++;
 					totalFrequency += ne.getFrequency();
+					/*
+					if (ne.getCategory().equals("Person")) {
+						ne.setTopic(new topic.topicTypes.sports.Formula1("Formula1", "Sports", 1));
+					} else if (ne.getCategory().equals("Company")) {
+						ne.setTopic(new topic.topicTypes.culture.Cinema("Cinema", "Culture", 1));
+					} else if (ne.getCategory().equals("Place")) {
+						ne.setTopic(new topic.topicTypes.politics.National("National", 1, "Geography"));
+					} else {
+						ne.setTopic(new topic.topicTypes.culture.Music("Music", "Culture", 1));
+					}
+						------------------FUNCIONA a MEDIAS-----------------*/
+					
 				}
 			}
 			resultRss.prettyPrint(0);
 			System.out.println("\nTotal named entities found: " + totalEntities);
 			System.out.println("Total frequency: " + totalFrequency);
 			
-			/*
-			Leer el archivo de suscription por defecto;
-			Llamar al httpRequester para obtenr el feed del servidor
-			Llamar al Parser especifico para extrar los datos necesarios por la aplicacion 
-			Llamar al constructor de Feed
-			Llamar a la heuristica para que compute las entidades nombradas de cada articulos del feed
-			LLamar al prettyPrint de la tabla de entidades nombradas del feed.
-			 */
 			
 		}else {
 			printHelp();

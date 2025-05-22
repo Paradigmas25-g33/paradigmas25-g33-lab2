@@ -26,6 +26,9 @@ public abstract class Heuristic {
         categoryMap.put("Steve","Person");
         categoryMap.put("Laurene","Person");
         categoryMap.put("Isabel","Person");
+        categoryMap.put("McMahon","Person");
+        categoryMap.put("Billy","Person");
+
 
         categoryMap.put("BYD","Company");
         categoryMap.put("Tesla","Company");
@@ -35,7 +38,10 @@ public abstract class Heuristic {
         categoryMap.put("Bloomberg","Company");
         categoryMap.put("Pfizer","Company");
         categoryMap.put("Linkedin","Company");
-        categoryMap.put("Walmart","Person");
+        categoryMap.put("Walmart","Company");
+        categoryMap.put("Mattel","Company");
+        categoryMap.put("Biotech","Company");
+        categoryMap.put("23andMe","Company");
 
         categoryMap.put("Europe","Place");
         categoryMap.put("India","Place");
@@ -44,6 +50,10 @@ public abstract class Heuristic {
         categoryMap.put("America","Place");
         categoryMap.put("Spain","Place");
         categoryMap.put("Philadelphia","Place");
+        categoryMap.put("Kong","Place");
+        categoryMap.put("Gulf","Place");
+        categoryMap.put("Qatar","Place");
+        categoryMap.put("Persian","Place");
 
         categoryMap.put("House","Company");
         categoryMap.put("Emerson Collective","Company");
@@ -51,6 +61,9 @@ public abstract class Heuristic {
         categoryMap.put("M&S","Company");
         categoryMap.put("Burlington","Company");
         categoryMap.put("CNN","Company");
+        categoryMap.put("Airbnb","Company");
+        categoryMap.put("CBS","Company");
+        categoryMap.put("CATL","Company");
 
         categoryMap.put("Day","Date");
         categoryMap.put("Week","Date");
@@ -58,11 +71,16 @@ public abstract class Heuristic {
         categoryMap.put("Year","Date");
         categoryMap.put("Weekend","Date");
         categoryMap.put("April","Date");
+        categoryMap.put("March","Date");
 
         categoryMap.put("Instagram","Product");
         categoryMap.put("Facebook","Product");
         categoryMap.put("TikTok","Product");
         categoryMap.put("YouTube","Product");
+        categoryMap.put("Bitcoin","Product");
+        categoryMap.put("Crypto","Product");
+        categoryMap.put("Cars","Product");
+
     }
 
     public String getCategory(String entity) {
