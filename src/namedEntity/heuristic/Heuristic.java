@@ -16,8 +16,8 @@ public abstract class Heuristic {
         categoryMap.put("Trump",     "Person");
         categoryMap.put("Messi",     "Person");
         categoryMap.put("Federer",   "Person");
-        categoryMap.put("USA",       "Country");
-        categoryMap.put("Russia",    "Country");
+        categoryMap.put("USA",       "Place");
+        categoryMap.put("Russia",    "Place");
         categoryMap.put("Tuesday",   "Date");     
         categoryMap.put("Fortnite",  "Product");  
 
@@ -35,28 +35,29 @@ public abstract class Heuristic {
         categoryMap.put("Bloomberg","Company");
         categoryMap.put("Pfizer","Company");
         categoryMap.put("Linkedin","Company");
+        categoryMap.put("Walmart","Person");
 
-        categoryMap.put("Europe","Country");
-        categoryMap.put("India","Country");
-        categoryMap.put("China","Country");
-        categoryMap.put("United States","Country");
-        categoryMap.put("Canada","Country");
-        categoryMap.put("America","Country");
-        categoryMap.put("Spain","Country");
-        categoryMap.put("Philadelphia","Country");
+        categoryMap.put("Europe","Place");
+        categoryMap.put("India","Place");
+        categoryMap.put("China","Place");
+        categoryMap.put("Canada","Place");
+        categoryMap.put("America","Place");
+        categoryMap.put("Spain","Place");
+        categoryMap.put("Philadelphia","Place");
 
-        categoryMap.put("House","Organization");
-        categoryMap.put("Emerson Collective","Organization");
-        categoryMap.put("Congress","Organization");
-        categoryMap.put("M&S","Organization");
-        categoryMap.put("Burlington","Organization");
-        categoryMap.put("CNN","Organization");
+        categoryMap.put("House","Company");
+        categoryMap.put("Emerson Collective","Company");
+        categoryMap.put("Congress","Company");
+        categoryMap.put("M&S","Company");
+        categoryMap.put("Burlington","Company");
+        categoryMap.put("CNN","Company");
 
         categoryMap.put("Day","Date");
         categoryMap.put("Week","Date");
         categoryMap.put("Month","Date");
         categoryMap.put("Year","Date");
         categoryMap.put("Weekend","Date");
+        categoryMap.put("April","Date");
 
         categoryMap.put("Instagram","Product");
         categoryMap.put("Facebook","Product");

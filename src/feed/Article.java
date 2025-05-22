@@ -142,37 +142,16 @@ public class Article {
 		System.out.println("Title: " + this.getTitle());
 		System.out.println("Publication Date: " + this.getPublicationDate());
 		System.out.println("Link: " + this.getLink());
-		System.out.println("Text: " + this.getText());
+		System.out.println("Description: " + this.getText());
 		System.out.println("**********************************************************************************************");	
 	}
 
-	public void prettyPrintH(int totalEntities, int totalFrequency, java.util.Map<String, Integer> globalCount) {
-		System.out.println("**********************************************************************************************");
-		System.out.println("Title: " + this.getTitle());
-		System.out.println("Publication Date: " + this.getPublicationDate());
-		System.out.println("Link: " + this.getLink());
-		System.out.println("Text: " + this.getText());
-		// Imprimir resumen global
-		System.out.println("=== Entidades globales ===");
-		System.out.println("Cantidad total de entidades: " + totalEntities);
-		System.out.println("Frecuencia acumulada: " + totalFrequency);
-		System.out.println("Categoria\tNombre\t\tFrecuencia");
-		for (String key : globalCount.keySet()) {
-			String[] parts = key.split("\\|");
-			String categoria = parts[0];
-			String nombre = parts[1];
-			int frecuencia = globalCount.get(key);
-			System.out.printf("%-10s\t%-16s\t%d\n", categoria, nombre, frecuencia);
-		}
-		System.out.println("**********************************************************************************************");	
-	}
-	
 	public void prettyPrintH() {
 		System.out.println("**********************************************************************************************");
 		System.out.println("Title: " + this.getTitle());
 		System.out.println("Publication Date: " + this.getPublicationDate());
 		System.out.println("Link: " + this.getLink());
-		System.out.println("Text: " + this.getText());
+		System.out.println("Description: " + this.getText());
 		// Imprimir entidades de este artículo
 		System.out.println("=== Entidades del artículo ===");
 		if (namedEntityList.isEmpty()) {

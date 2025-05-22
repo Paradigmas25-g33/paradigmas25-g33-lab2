@@ -78,7 +78,7 @@ public class FeedReaderMain {
 
 					
 				} else if ("reddit".equals(UrlType.toLowerCase())){
-					System.out.println("Funciòn no implementada");
+					System.out.println("Funciòn reddit no implementada");
 					//String feedUrl = singleSubscription.getUrl();
 					//String feedContent = requester.getFeedRss(feedUrl);
 				} else {
@@ -97,6 +97,8 @@ public class FeedReaderMain {
 				}
 			}
 			resultRss.prettyPrint(0);
+			System.out.println("\nTotal named entities found: " + totalEntities);
+			System.out.println("Total frequency: " + totalFrequency);
 			
 			/*
 			Leer el archivo de suscription por defecto;
